@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Catálogo{% endblock %}
+{% block content %}
+  <h2>Catálogo</h2>
+  <div class="grid">
+    {% for c in cupcakes %}
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ url_for('static', filename='img/' + (c.imagem or 'placeholder.jpg')) }}" alt="{{ c.nome }}">
+          <a href="{{ url_for('shop.review', cupcake_id=c.id_cupcake) }}" class="btn secondary">
+  Avaliar
+        </a>
+        </div>
+        <div class="card-body">
+          <h3>{{ c.nome }}</h3>
+          <p>{{ c.descricao }}</p>
+          <p class="price">R$ {{ "%.2f"|format(c.preco) }}</p>
+          <form action="{{ url_for('shop.add_to_cart', cupcake_id=c.id_cupcake) }}" method="post">
+            <label>Qtd <input name="quantity" type="number" value="1" min="1"></label>
+            <button class="btn small" type="submit">Adicionar</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

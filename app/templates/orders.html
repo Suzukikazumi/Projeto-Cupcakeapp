@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Meus Pedidos{% endblock %}
+{% block content %}
+<h2>🧾 Meus Pedidos</h2>
+
+{% if pedidos %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Valor Total</th>
+        <th>Forma Pagamento</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in pedidos %}
+      <tr>
+        <td>{{ p.id_pedido }}</td>
+        <td>{{ p.status }}</td>
+        <td>R$ {{ "%.2f"|format(p.valor_total) }}</td>
+        <td>{{ p.forma_pagamento }}</td>
+        <td>{{ p.data_pedido.strftime('%d/%m/%Y %H:%M') if p.data_pedido else '-' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Você ainda não fez nenhum pedido.</p>
+{% endif %}
+{% endblock %}

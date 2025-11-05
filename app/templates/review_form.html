@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Avaliar {{ cupcake.nome }}{% endblock %}
+{% block content %}
+<h2>⭐ Avaliar: {{ cupcake.nome }}</h2>
+<img src="{{ url_for('static', filename='img/' + cupcake.imagem) }}" 
+     alt="{{ cupcake.nome }}" width="200">
+
+<form action="{{ url_for('shop.review', cupcake_id=cupcake.id_cupcake) }}" method="post">
+  <label for="nota">Nota:</label>
+  <select name="nota" id="nota" required>
+    <option value="">Selecione</option>
+    <option value="1">1 - Ruim</option>
+    <option value="2">2 - Regular</option>
+    <option value="3">3 - Bom</option>
+    <option value="4">4 - Muito bom</option>
+    <option value="5">5 - Excelente</option>
+  </select>
+
+  <label for="comentario">Comentário:</label>
+  <textarea name="comentario" id="comentario" rows="4" required></textarea>
+
+  <button type="submit">Enviar Avaliação</button>
+</form>
+{% endblock %}

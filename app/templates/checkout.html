@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<form method="POST">
+  <div class="section-box">
+    <h3>Endereço de Entrega</h3>
+    <label>Rua e número:
+      <input type="text" name="endereco" required>
+    </label>
+  </div>
+
+  <div class="section-box">
+    <h3>Forma de Pagamento</h3>
+    <select name="forma_pagamento" required>
+      <option value="">Selecione...</option>
+      <option value="Pix">Pix</option>
+      <option value="Cartão">Cartão</option>
+      <option value="Dinheiro">Dinheiro</option>
+    </select>
+  </div>
+
+  <div class="section-box">
+    <h3>Cupom de Desconto</h3>
+    <input type="text" name="cupom" placeholder="Digite o código">
+    <button type="submit" name="acao" value="aplicar_cupom" class="btn outline">Aplicar cupom</button>
+  </div>
+
+  <button type="submit" name="acao" value="finalizar" class="btn">Finalizar Pedido</button>
+</form>
+{% endblock %}

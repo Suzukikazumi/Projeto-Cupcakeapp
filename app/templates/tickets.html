@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Suporte{% endblock %}
+{% block content %}
+<h2>📞 Meus Chamados de Suporte</h2>
+
+{% if tickets %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Canal</th>
+        <th>Mensagem</th>
+        <th>Status</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in tickets %}
+      <tr>
+        <td>{{ s.id_suporte }}</td>
+        <td>{{ s.canal }}</td>
+        <td>{{ s.mensagem }}</td>
+        <td>{{ s.status }}</td>
+        <td>{{ s.data_envio.strftime('%d/%m/%Y %H:%M') if s.data_envio else '-' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Você ainda não abriu chamados de suporte.</p>
+{% endif %}
+{% endblock %}

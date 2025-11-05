@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Carrinho{% endblock %}
+{% block content %}
+  <h2>Seu carrinho</h2>
+  {% if items %}
+    <table class="stripe">
+      <thead><tr><th>Produto</th><th>Qtd</th><th>Subtotal</th></tr></thead>
+      <tbody>
+      {% for item in items %}
+  <tr>
+    <td>{{ item.cupcake.nome }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>R$ {{ "%.2f"|format(item.subtotal) }}</td>
+    <td>
+      <form method="POST" action="{{ url_for('shop.remove_from_cart', cupcake_id=item.cupcake.id_cupcake) }}">
+        <button type="submit" class="btn small danger">Remover</button>
+      </form>
+    </td>
+  </tr>
+{% endfor %}
+
+      </tbody>
+      <tfoot>
+        <tr><td></td><td><strong>Total</strong></td><td><strong>R$ {{ "%.2f"|format(total) }}</strong></td></tr>
+      </tfoot>
+    </table>
+    <p><a class="btn" href="{{ url_for('shop.checkout') }}">Finalizar compra</a></p>
+  {% else %}
+    <p>Seu carrinho está vazio. <a href="{{ url_for('shop.catalog') }}">Ver catálogo</a></p>
+  {% endif %}
+{% endblock %}

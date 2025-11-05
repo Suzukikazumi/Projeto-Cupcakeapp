@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Mensagem Enviada{% endblock %}
+{% block content %}
+<section class="success">
+  <h2>✅ Solicitação Enviada!</h2>
+  <p>Obrigado por entrar em contato com o suporte. <br>
+  Nossa equipe responderá em breve pelo canal escolhido.</p>
+  
+  <a href="{{ url_for('shop.index') }}" class="btn">Voltar à Página Inicial</a>
+  <a href="{{ url_for('support.list_tickets') }}" class="btn secondary">Ver meus chamados</a>
+</section>
+{% endblock %}

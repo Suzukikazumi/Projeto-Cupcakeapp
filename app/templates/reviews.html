@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Avaliações{% endblock %}
+{% block content %}
+<h2>⭐ Avaliações dos Clientes</h2>
+
+{% if avaliacoes %}
+  <ul class="review-list">
+    {% for a in avaliacoes %}
+      <li>
+        <strong>{{ a.usuario.nome }}</strong> avaliou <em>{{ a.cupcake.nome }}</em><br>
+        Nota: {{ a.nota }} / 5<br>
+        <q>{{ a.comentario }}</q>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhuma avaliação registrada ainda.</p>
+{% endif %}
+{% endblock %}

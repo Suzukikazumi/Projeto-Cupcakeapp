@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Notificações{% endblock %}
+{% block content %}
+<h2>🔔 Minhas Notificações</h2>
+
+{% if notificacoes %}
+  <ul class="notification-list">
+    {% for n in notificacoes %}
+      <li class="{% if n.lida %}lida{% endif %}">
+        <strong>{{ n.titulo }}</strong><br>
+        {{ n.mensagem }}<br>
+        <small>{{ n.data_envio.strftime('%d/%m/%Y %H:%M') }}</small><br>
+        {% if not n.lida %}
+          <a href="{{ url_for('notifications.mark_as_read', notificacao_id=n.id_notificacao) }}">Marcar como lida</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Você não possui notificações.</p>
+{% endif %}
+{% endblock %}

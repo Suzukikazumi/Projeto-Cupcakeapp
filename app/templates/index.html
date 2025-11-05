@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <section class="hero">
+    <h2>Bem-vindo ao CupcakeApp 🍰</h2>
+    <p>Os melhores cupcakes entregues na sua porta.</p>
+    <p><a class="btn" href="{{ url_for('shop.catalog') }}">Ver catálogo</a></p>
+  </section>
+{% endblock %}
+

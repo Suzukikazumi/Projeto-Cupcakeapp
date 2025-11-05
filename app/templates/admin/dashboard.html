@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Painel Admin{% endblock %}
+{% block content %}
+<h2>📊 Painel do Administrador</h2>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-body">
+      <h3>Usuários</h3>
+      <p>Total: {{ total_usuarios }}</p>
+      <a href="{{ url_for('admin.usuarios') }}" class="btn small">Ver detalhes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>Pedidos</h3>
+      <p>Total: {{ total_pedidos }}</p>
+      <a href="{{ url_for('admin.pedidos') }}" class="btn small">Ver detalhes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>Cupcakes</h3>
+      <p>Total: {{ total_cupcakes }}</p>
+      <a href="{{ url_for('admin.cupcakes') }}" class="btn small">Ver detalhes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>Cupons</h3>
+      <p>Total: {{ total_cupons }}</p>
+      <a href="{{ url_for('admin.cupons') }}" class="btn small">Ver detalhes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>Mensagens de Suporte</h3>
+      <p>Total: {{ total_mensagens }}</p>
+      <a href="{{ url_for('admin.suporte') }}" class="btn small">Ver detalhes</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

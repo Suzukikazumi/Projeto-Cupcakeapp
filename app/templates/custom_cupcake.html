@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Cupcake Personalizado{% endblock %}
+{% block content %}
+<h2>🧁 Monte seu Cupcake Personalizado</h2>
+
+<form method="post">
+  <label for="massa">Massa:</label>
+  <select name="massa" id="massa" required>
+    <option value="Baunilha">Baunilha</option>
+    <option value="Chocolate">Chocolate</option>
+    <option value="Red Velvet">Red Velvet</option>
+  </select>
+
+  <label for="cobertura">Cobertura:</label>
+  <select name="cobertura" id="cobertura">
+    <option value="">Nenhuma</option>
+    <option value="Brigadeiro">Brigadeiro</option>
+    <option value="Chantilly">Chantilly</option>
+    <option value="Cream Cheese">Cream Cheese</option>
+  </select>
+
+  <label for="recheio">Recheio:</label>
+  <select name="recheio" id="recheio">
+    <option value="">Nenhum</option>
+    <option value="Doce de Leite">Doce de Leite</option>
+    <option value="Nutella">Nutella</option>
+    <option value="Geleia de Morango">Geleia de Morango</option>
+  </select>
+
+  <label for="decoracao">Decoração:</label>
+  <select name="decoracao" id="decoracao">
+    <option value="">Nenhuma</option>
+    <option value="Granulado">Granulado</option>
+    <option value="Raspas de Chocolate">Raspas de Chocolate</option>
+    <option value="Confete">Confete</option>
+  </select>
+
+  <label for="observacoes">Observações:</label>
+  <textarea id="observacoes" name="observacoes" placeholder="Observações especiais..."></textarea>
+
+  <hr>
+
+  <label for="endereco">Endereço de Entrega:</label>
+  <input type="text" id="endereco" name="endereco" required>
+
+  <label for="forma_pagamento">Forma de Pagamento:</label>
+  <select id="forma_pagamento" name="forma_pagamento" required>
+    <option value="">Selecione...</option>
+    <option value="Cartão de Crédito">Cartão de Crédito</option>
+    <option value="Pix">Pix</option>
+    <option value="Boleto">Boleto</option>
+  </select>
+
+  <label for="cupom">Cupom de Desconto:</label>
+  <input type="text" id="cupom" name="cupom" placeholder="Digite o código (opcional)">
+
+  <button type="submit">Finalizar Pedido</button>
+</form>
+{% endblock %}

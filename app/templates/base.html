@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CupcakeApp - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand"><a href="{{ url_for('shop.index') }}">CupcakeApp</a></h1>
+      <nav>
+        <a href="{{ url_for('shop.catalog') }}">Catálogo</a>
+        <a href="{{ url_for('shop.cart') }}">Carrinho</a>
+        <a href="{{ url_for('shop.orders') }}">Pedidos</a>
+        <a href="{{ url_for('shop.reviews') }}">Avaliações</a>
+        <a href="{{ url_for('support.list_tickets') }}">Suporte</a>
+        <a href="{{ url_for('notifications.list_notifications') }}">Notificações</a>
+        <a href="{{ url_for('shop.custom_cupcake') }}">Personalizar Cupcake</a>
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('shop.profile') }}">Perfil</a>
+          <a href="{{ url_for('auth.logout') }}">Sair</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}">Login</a>
+          <a href="{{ url_for('auth.register') }}">Registrar</a>
+           {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-area">
+        {% for category, msg in messages %}
+          <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© CupcakeApp — template demo</div>
+  </footer>
+</body>
+</html>

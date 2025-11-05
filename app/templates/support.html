@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Suporte{% endblock %}
+{% block content %}
+  <h2>Suporte ao Cliente</h2>
+  <form action="{{ url_for('support.new_ticket') }}" method="post">
+    <label>Canal
+      <select name="canal">
+        <option>chat</option>
+        <option>email</option>
+      </select>
+    </label>
+    <label>Mensagem <textarea name="mensagem" required></textarea></label>
+    <button class="btn" type="submit">Enviar</button>
+  </form>
+
+  {% if tickets is defined %}
+    <h3>Tickets recentes</h3>
+    <ul>
+      {% for t in tickets %}
+        <li>{{ t.data_envio }} - {{ t.usuario.nome }} - {{ t.canal }} - {{ t.status }} - {{ t.mensagem }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
