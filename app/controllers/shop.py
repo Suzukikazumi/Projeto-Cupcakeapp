@@ -12,17 +12,20 @@ def index():
 @bp.route("/catalog")
 def catalog():
     cupcakes = Cupcake.query.all()
-    if not Cupcake.query.first():
-        from .. import db
+
+    if not cupcakes:
+        print("📦 Inserindo cupcakes demo...")
         demo_items = [
-            Cupcake(nome="Cupcake de Chocolate", preco=7.5, descricao="Com cobertura cremosa de chocolate"),
+            Cupcake(nome="Cupcake de Chocolate", preco=7.5, descricao="Cobertura cremosa de chocolate"),
             Cupcake(nome="Cupcake de Morango", preco=6.0, descricao="Com pedaços de morango fresco"),
             Cupcake(nome="Cupcake de Baunilha", preco=5.5, descricao="Tradicional e suave"),
-    ]
-    db.session.add_all(demo_items)
-    db.session.commit()
+        ]
+        db.session.add_all(demo_items)
+        db.session.commit()
+        cupcakes = Cupcake.query.all()
 
     return render_template("catalog.html", cupcakes=cupcakes)
+
 
 @bp.route("/add-to-cart/<int:cupcake_id>", methods=["POST"])
 def add_to_cart(cupcake_id):
